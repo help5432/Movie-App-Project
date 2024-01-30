@@ -12,7 +12,8 @@ export default function Navbar({}: Props) {
       <div>Movies</div>
       <div>
         <Link href={"/"}>Home</Link>
-        <Link href={"/"}>Favorites</Link>
+        {/* FavoritesPage와 Link 페이지연동 */}
+        <Link href={"/FavoritesPage"}>Favorites</Link>
       </div>
     </div>
   );
