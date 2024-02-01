@@ -17,7 +17,8 @@ export default function Navbar({}: Props) {
       <div className="flex gap-3">
         <Link href={"/"}>Home</Link>
         {/* FavoritesPage와 Link 페이지연동 , Favorites 클릭시 http://localhost:3000/FavoritesPage이동 */}
-        <Link href={"/FavoritesPage"}>Favorites</Link>
+        {/* error 404 - 단순 경로 에러 favorites폴더 경로입력*/}
+        <Link href={"/favorites"}>Favorites</Link>
       </div>
     </div>
   );

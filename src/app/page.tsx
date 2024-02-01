@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navbar from "./components/navbar";
+import SearchBar from "./components/searchBar";
 
 export default function Home() {
   return (
