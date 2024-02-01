@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import LayoutProvider from "./LayoutProvider";
 
 // 레이아웃 컴포넌트는 페이지의 전체 구조와 배치를 정의하는 역할을 하며, 안에 다른 컴포넌트들을 배치할 수 있다.
 const inter = Inter({ subsets: ["latin"] });
@@ -17,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black text-white`}>
-        {children}
-      </body>
+      <LayoutProvider>
+        <body className={`${inter.className} bg-black text-white`}>
+          {children}
+        </body>
+      </LayoutProvider>
     </html>
   );
 }
