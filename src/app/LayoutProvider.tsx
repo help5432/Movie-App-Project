@@ -6,6 +6,8 @@
 
 import React from "react";
 
+//QueryClient는 데이터를 캐싱하고 관리하는데 사용되는 객체입니다.
+// QueryClientProvider는 React 컴포넌트 트리에 QueryClient를 제공하는 역할을 합니다.
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // <<API  REACT-QUERY>> //

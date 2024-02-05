@@ -15,10 +15,10 @@ export default function Home() {
   //fetch 요청을보냄  res 요청을 받음 , 요청받은것을 json으로 파싱
   const { isLoading, error, data } = useQuery({
     queryKey: ["movies"],
-    queryFn: () => fetch(api).then((res) => res.json()),
+    queryFn: () => fetch(api).then((res) => console.log(res)),
   });
 
-  // console.log("data-", data);
+  console.log("data-", data);
 
   if (isLoading) return "Loading...";
 
