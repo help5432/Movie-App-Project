@@ -7,6 +7,7 @@ import { PiTelevisionFill } from "react-icons/pi";
 //usequery hook import
 import { useQuery } from "@tanstack/react-query";
 import { MovieType } from "./type";
+import Card from "./components/card";
 
 export default function Home() {
   //open api 참고 사이트 https://www.tvmaze.com/api //-> fatch(api)
@@ -35,28 +36,9 @@ export default function Home() {
 
           <section className="flex flex-wrap gap-4 justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
-            {/* card */}
-            {data.map((d, i) => (
-              <div key={i} className="flex flex-col gap-1">
-                {/* 보여줄 Image박스 크기 설정 , 275 x 154 , gray , rounded */}
-                <div className="h-[154px] w-[275px] bg-gray-400 rounded-md"></div>
-
-                {/* details */}
-                {/* years , 아이콘&분류 , ? , televison아이콘 https://react-icons.github.io/react-icons/search/#q=televi */}
-                {/* 요소들 수평배치  */}
-                <div className="text-sm flex gap-3 text-gray-500 items-center">
-                  <div>2024</div>
-                  {/* icon */}
-                  <div className="flex gap-2 items-center">
-                    <PiTelevisionFill />
-                    <span>Tv Series</span>
-                    {/* ratings */}
-                    <p>6.4</p>
-                  </div>
-                </div>
-                {/* movie title */}
-                <p>Under the Dome</p>
-              </div>
+            {/* card , data ? data의 값이 null undifined 계속진행 반환 */}
+            {data?.map((d, i) => (
+              <Card key={i} />
             ))}
           </section>
         </div>
