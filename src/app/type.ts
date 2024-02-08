@@ -1,5 +1,5 @@
 /** @format */
-
+// data의 타입을 type script 로변환 , 타입 설정
 export interface MovieType {
   id: number;
   url: string;

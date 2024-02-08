@@ -38,7 +38,13 @@ export default function Home() {
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
             {/* card , data ? data의 값이 null undifined 계속진행 반환 */}
             {data?.map((d, i) => (
-              <Card key={i} />
+              <Card
+                key={i}
+                movieImg={d.image.original}
+                name={d.name}
+                rating={3.4}
+                year="2024"
+              />
             ))}
           </section>
         </div>
