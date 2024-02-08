@@ -13,7 +13,7 @@ export default function Card(props: Props) {
   return (
     <div className="flex flex-col gap-1">
       {/* 보여줄 Image박스 크기 설정 , 275 x 154 , gray , rounded */}
-      <div className="h-[154px] w-[275px] bg-gray-400 rounded-md">
+      <div className="h-[154px] w-[275px] bg-gray-400 rounded-md overflow-hidden">
         <Image
           height={400}
           width={400}
