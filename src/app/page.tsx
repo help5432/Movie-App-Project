@@ -8,10 +8,15 @@ import { PiTelevisionFill } from "react-icons/pi";
 import { useQuery } from "@tanstack/react-query";
 import { MovieType } from "./type";
 import Card from "./components/card";
+import { useState } from "react";
 
 export default function Home() {
   //open api 참고 사이트 https://www.tvmaze.com/api //-> fatch(api)
+
   const api = "https://api.tvmaze.com/shows";
+
+  //검색
+  const [search, setsearch] = useState("");
 
   //useQuery hook  // 데이터를 가져오는동안에 isLading  , 쿼리실행중 error표시 , data 성공적으로 data를 가져왔는지
   //fetch 요청을보냄  res 요청을 받음 , 요청받은것을 json으로 파싱
@@ -32,7 +37,7 @@ export default function Home() {
         {/* flex flex-col flex컨테이너 자식요소들을 세로배치 */}
 
         <div className="max-w-7xl px-2 mx-auto flex flex-col gap-8">
-          <SearchBar />
+          <SearchBar onChange={} value="" />
 
           <section className="flex flex-wrap gap-4 justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
@@ -41,12 +46,13 @@ export default function Home() {
               (d, i) => (
                 console.log(d),
                 (
+                  //https://api.tvmaze.com/shows/1
                   <Card
                     key={i}
                     movieImg={d.image.original}
                     name={d.name}
-                    rating={3.4}
-                    year="2024"
+                    rating={d.rating.average}
+                    year={d.premiered}
                   />
                 )
               )

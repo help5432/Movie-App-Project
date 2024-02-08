@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { PiTelevisionFill } from "react-icons/pi";
+// https://www.npmjs.com/package/dateformat
+//npm i @types/dateformat 설치
+import dateFormat from "dateformat";
 
 type Props = {
   movieImg: string;
@@ -27,7 +30,7 @@ export default function Card(props: Props) {
       {/* years , 아이콘&분류 , ? , televison아이콘 https://react-icons.github.io/react-icons/search/#q=televi */}
       {/* 요소들 수평배치  */}
       <div className="text-sm flex gap-3 text-gray-500 items-center">
-        <div>{props.year}</div>
+        <div>{dateFormat(props.year, "yyyy")}</div>
         {/* icon */}
         <div className="flex gap-2 items-center">
           <PiTelevisionFill />
@@ -41,3 +44,4 @@ export default function Card(props: Props) {
     </div>
   );
 }
+//35. {/* <div>{props.year}</div> */}
