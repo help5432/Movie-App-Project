@@ -37,7 +37,12 @@ export default function Home() {
         {/* flex flex-col flex컨테이너 자식요소들을 세로배치 */}
 
         <div className="max-w-7xl px-2 mx-auto flex flex-col gap-8">
-          <SearchBar onChange={} value="" />
+          {/* onChange사용자가 입력 필드 내용을 변경할때마다 호출 ,  */}
+          <SearchBar
+            onChange={(e) => setsearch(e.target.value)}
+            value={search}
+          />
+          {search}
 
           <section className="flex flex-wrap gap-4 justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
@@ -48,6 +53,7 @@ export default function Home() {
                 (
                   //https://api.tvmaze.com/shows/1
                   <Card
+                    id={d.id}
                     key={i}
                     movieImg={d.image.original}
                     name={d.name}

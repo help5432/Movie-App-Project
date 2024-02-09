@@ -14,8 +14,8 @@ export default function SearchBar({ value, onChange }: Props) {
       <IoIosSearch className="text-3xl" />
       {/* // react icons , <IoIosSearch />  , bg-inherit 부모 bg 상속 검은색 설정이유 text색상이 화이트임 안보여요*/}
       <input
-        value={}
-        onChange={}
+        value={value}
+        onChange={onChange}
         className="border w-[350px] bg-inherit max-w-[350px]"
         type="text"
       />

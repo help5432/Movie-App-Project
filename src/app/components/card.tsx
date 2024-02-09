@@ -10,8 +10,8 @@ type Props = {
   year: string;
   rating: number;
   name: string;
+  id: number;
 };
-
 export default function Card(props: Props) {
   return (
     <div className="flex flex-col gap-1">
