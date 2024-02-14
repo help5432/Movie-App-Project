@@ -4,6 +4,7 @@ import { PiTelevisionFill } from "react-icons/pi";
 // https://www.npmjs.com/package/dateformat
 //npm i @types/dateformat 설치
 import dateFormat from "dateformat";
+import Link from "next/link";
 
 type Props = {
   movieImg: string;
@@ -14,7 +15,7 @@ type Props = {
 };
 export default function Card(props: Props) {
   return (
-    <div className="flex flex-col gap-1">
+    <Link href={`/${props.id}`} className="flex flex-col gap-1">
       {/* 보여줄 Image박스 크기 설정 , 275 x 154 , gray , rounded */}
       <div className="h-[154px] w-[275px] bg-gray-400 rounded-md overflow-hidden">
         <Image
@@ -41,7 +42,7 @@ export default function Card(props: Props) {
       </div>
       {/* movie title */}
       <p>{props.name}</p>
-    </div>
+    </Link>
   );
 }
 //35. {/* <div>{props.year}</div> */}

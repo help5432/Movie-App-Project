@@ -15,17 +15,32 @@ export default function Home() {
 
   const api = "https://api.tvmaze.com/shows";
 
-  //검색
+  //검색 useState 상태 ""
   const [search, setsearch] = useState("");
 
   //useQuery hook  // 데이터를 가져오는동안에 isLading  , 쿼리실행중 error표시 , data 성공적으로 data를 가져왔는지
   //fetch 요청을보냄  res 요청을 받음 , 요청받은것을 json으로 파싱
-  const { isLoading, error, data } = useQuery<MovieType[]>({
+  //data:moviesData moviesData변수생성
+  const {
+    isLoading,
+    error,
+    data: moviesData,
+  } = useQuery<MovieType[]>({
     queryKey: ["movies"],
     queryFn: () => fetch(api).then((res) => res.json()),
   });
 
-  console.log("data-", data);
+  console.log("data-", moviesData);
+
+  //search변수가 비어있지 않은경우 = 사용자가 검색어를 입력한경우 , movieData배열을 filter메서드로 주어진 조건에 맞는요소로 필터링
+  //d.name의 속성값을 소문자 반환 , search변수의 값이 포함include 되어있는지 확인 , 필터링된 결과를 data 변수에 저장
+  //:moviesData search 변수가 비어있을경우 moviesData 모든 영화 데이터 유지 .
+  const data = search
+    ? moviesData?.filter((d) =>
+        d.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      )
+    : moviesData;
+
   if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
@@ -37,20 +52,19 @@ export default function Home() {
         {/* flex flex-col flex컨테이너 자식요소들을 세로배치 */}
 
         <div className="max-w-7xl px-2 mx-auto flex flex-col gap-8">
-          {/* onChange사용자가 입력 필드 내용을 변경할때마다 호출 ,  */}
+          {/* onChange 입력 필드값이 변경될때 호출되는 이벤트 핸들러, 사용자가 검색어를 입력할때마다 setsearch 함수를 호출하여 search상태를 업데이트한다. */}
+          {/* e 이벤트객체 e.target.value사용자가 입력한 텍스트를 가르킨다 */}
           <SearchBar
             onChange={(e) => setsearch(e.target.value)}
             value={search}
           />
-          {search}
+          {/* {search} 테스트*/}
 
           <section className="flex flex-wrap gap-4 justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
             {/* card , data ? data의 값이 null undifined 계속진행 반환 */}
-            {data?.map(
-              (d, i) => (
-                console.log(d),
-                (
+            {data
+              ? data?.map((d, i) => (
                   //https://api.tvmaze.com/shows/1
                   <Card
                     id={d.id}
@@ -60,9 +74,8 @@ export default function Home() {
                     rating={d.rating.average}
                     year={d.premiered}
                   />
-                )
-              )
-            )}
+                ))
+              : "loading..."}
           </section>
         </div>
       </main>
