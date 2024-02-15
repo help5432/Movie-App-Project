@@ -4,6 +4,7 @@ import { MovieType } from "../type";
 import { dataTagSymbol, useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {};
 
@@ -44,9 +45,21 @@ export default function Moviepage({
         >
           Back
         </Link>
-        <p>{data?.name}</p>
-        {params.movie}
-        {""}
+        {/* <p>{data?.name}</p> */}
+
+        <div className="flex ">
+          {/* left  */}
+          {/* 528 */}
+          {/* 339 */}
+          <Image
+            height={600}
+            width={600}
+            className="w-[528px] h-[339px]"
+            src={data?.image.original ?? ""}
+            alt="movie"
+          />
+          {/* right */}
+        </div>
       </main>
     </div>
   );
