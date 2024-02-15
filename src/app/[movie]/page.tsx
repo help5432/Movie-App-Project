@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MovieType } from "../type";
 import { dataTagSymbol, useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar";
+import Link from "next/link";
 
 type Props = {};
 
@@ -35,7 +36,14 @@ export default function Moviepage({
   return (
     <div>
       <main className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
+        {/* Card눌렀을때 Home으로갈수있는 Back 버튼생성 Link*/}
         <Navbar />
+        <Link
+          href={"/"}
+          className="border px-4 py-1.5 rounded hover:opacity-80"
+        >
+          Back
+        </Link>
         <p>{data?.name}</p>
         {params.movie}
         {""}

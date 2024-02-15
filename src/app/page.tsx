@@ -63,7 +63,7 @@ export default function Home() {
           <section className="flex flex-wrap gap-4 justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
             {/* card , data ? data의 값이 null undifined 계속진행 반환 */}
-            {data
+            {data && moviesData
               ? data?.map((d, i) => (
                   //https://api.tvmaze.com/shows/1
                   <Card
