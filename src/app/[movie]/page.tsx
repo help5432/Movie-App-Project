@@ -36,8 +36,8 @@ export default function Moviepage({
 
   return (
     <div>
-      <main className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
-        {/* Card눌렀을때 Home으로갈수있는 Back 버튼생성 Link*/}
+      <main className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 flex flex-col gap-4">
+        {/* Card눌렀을때 Home으로갈수있는 Back 버튼생성 Link , gap-4 flex컨테이너의 아이템 사이의 간격설정*/}
         <Navbar />
         <Link
           href={"/"}
@@ -47,18 +47,22 @@ export default function Moviepage({
         </Link>
         {/* <p>{data?.name}</p> */}
 
-        <div className="flex ">
-          {/* left  */}
-          {/* 528 */}
-          {/* 339 */}
+        <div className="flex gap-5">
+          {/* left */}
+
           <Image
             height={600}
             width={600}
-            className="w-[528px] h-[339px]"
+            className="w-[528px] h-[339px] object-cover rounded-md"
             src={data?.image.original ?? ""}
             alt="movie"
           />
+
           {/* right */}
+          <section>
+            <h2 className="text-3xl font-bold">{data?.name}</h2>
+            <p>{data?.summary}</p>
+          </section>
         </div>
       </main>
     </div>
