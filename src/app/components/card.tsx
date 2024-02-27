@@ -8,7 +8,7 @@ import Link from "next/link";
 import { CiBookmark } from "react-icons/ci";
 import { MovieType } from "../type";
 import { useAtom } from "jotai";
-import { favoriteMoviesAtom } from "./atom";
+import { favoriteMoviesAtom } from "../atom";
 import { IoBookmark } from "react-icons/io5";
 
 type Props = {

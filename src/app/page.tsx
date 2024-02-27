@@ -11,7 +11,7 @@ import Card from "./components/card";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { favoriteMoviesAtom } from "./components/atom";
+import { favoriteMoviesAtom } from "./atom";
 
 export default function Home() {
   //open api 참고 사이트 https://www.tvmaze.com/api //-> fatch(api)
@@ -19,7 +19,7 @@ export default function Home() {
   const api = "https://api.tvmaze.com/shows";
 
   //북마크 favorites
-  const [favoritesMovies, setfavoritesmovies] = useAtom(favoriteMoviesAtom);
+  const [favoritesMovies, setfavoritesMovies] = useAtom(favoriteMoviesAtom);
 
   //검색 useState 상태 ""
   const [search, setsearch] = useState("");
@@ -57,10 +57,10 @@ export default function Home() {
   console.log("favoritesMovies-", favoritesMovies);
 
   function addToFavorites(d: MovieType) {
-    setfavoritesmovies((pre) => [...pre, d]);
+    setfavoritesMovies((pre) => [...pre, d]);
   }
   function removeFromFavorites(d: MovieType) {
-    setfavoritesmovies((pre) => pre.filter((fav) => fav.id == d.id));
+    setfavoritesMovies((pre) => pre.filter((fav) => fav.id !== d.id));
   }
 
   console.log("data-", data);
