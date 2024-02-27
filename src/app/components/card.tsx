@@ -10,6 +10,8 @@ import { MovieType } from "../type";
 import { useAtom } from "jotai";
 import { favoriteMoviesAtom } from "../atom";
 import { IoBookmark } from "react-icons/io5";
+//https://auto-animate.formkit.com/
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type Props = {
   movieImg: string;
@@ -22,7 +24,8 @@ type Props = {
   removeFromFavorites: (d: MovieType) => void;
 };
 export default function Card(props: Props) {
-  const [favoritesMovies, setfavoritesmovies] = useAtom(favoriteMoviesAtom);
+  const [animationParent] = useAutoAnimate();
+  const [favoritesMovies, setfavoritesMovies] = useAtom(favoriteMoviesAtom);
   const isFavorite = favoritesMovies.some((fav) => fav?.id === props.d.id);
 
   function handleFavoritMovies() {
