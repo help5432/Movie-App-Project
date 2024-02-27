@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MovieType } from "../type";
 import { dataTagSymbol, useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar";
 import Link from "next/link";
 import Image from "next/image";
+import parse from "html-react-parser";
+import dateFormat from "dateformat";
+import { FaStar } from "react-icons/fa";
 
 type Props = {};
 
@@ -41,27 +44,39 @@ export default function Moviepage({
         <Navbar />
         <Link
           href={"/"}
-          className="border px-4 py-1.5 rounded hover:opacity-80"
+          className="border px-4 py-1.5 rounded hover:opacity-80 w-fit"
         >
           Back
         </Link>
         {/* <p>{data?.name}</p> */}
 
-        <div className="flex gap-5">
+        <div className="flex gap-5 flex-col sm:flex-row pb-10">
           {/* left */}
 
           <Image
             height={600}
             width={600}
             className="w-[528px] h-[339px] object-cover rounded-md"
-            src={data?.image.original ?? ""}
+            src={data?.image?.original ?? ""}
             alt="movie"
           />
 
           {/* right */}
-          <section>
+          <section className="w-full  max-w-[500px] flex flex-col gap-3">
             <h2 className="text-3xl font-bold">{data?.name}</h2>
-            <p>{data?.summary}</p>
+            {/*npm i html-react-parser html 문자열을 하나 이상의 react요소로 변환  */}
+            {/* data나 summary가 undefined거나 null 값이면 "" 값으로 대체한다 , 핵심 값이 undefined는 parser를 하지 못한다.*/}
+            {/* 굳이 이렇게 파싱하는 이유? xss의 위험성때문에 아무튼 위험하다 */}
+            <p>{parse(data?.summary ?? "")}</p>
+            <div className="flex gap-4 text-gray-500">
+              <p>{dateFormat(data?.premiered, "yyyy")}</p>
+              <p>{data?.averageRuntime}m</p>
+              <div className="flex items-center gap-1">
+                <FaStar className="text-yellow-400" />
+                {data?.rating?.average}/10
+              </div>
+            </div>
+            {/* <p>{data?.summary}</p> */}
           </section>
         </div>
       </main>

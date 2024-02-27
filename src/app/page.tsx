@@ -9,11 +9,17 @@ import { useQuery } from "@tanstack/react-query";
 import { MovieType } from "./type";
 import Card from "./components/card";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { atom } from "jotai";
 
 export default function Home() {
   //open api 참고 사이트 https://www.tvmaze.com/api //-> fatch(api)
 
   const api = "https://api.tvmaze.com/shows";
+
+  //
+  const [text, setText] = useAtom(favoriteMoviesAtom);
 
   //검색 useState 상태 ""
   const [search, setsearch] = useState("");
@@ -24,9 +30,10 @@ export default function Home() {
   const {
     isLoading,
     error,
+    refetch,
     data: moviesData,
   } = useQuery<MovieType[]>({
-    queryKey: ["movies"],
+    queryKey: ["singleMovies"],
     queryFn: () => fetch(api).then((res) => res.json()),
   });
 
@@ -40,6 +47,14 @@ export default function Home() {
         d.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       )
     : moviesData;
+
+  // useEffect 부수효과정의 , 컴포넌트가 렌더링될때 또는 search나 refetch 값이 변경될때 마다 실행된다
+  // 실행될때마다 refetch 함수가 호출된다. // [search, refetch] (의존성 배열)
+  useEffect(() => {
+    refetch();
+  }, [search, refetch]);
+
+  // console.log("data", moviesData);
 
   if (isLoading) return "Loading...";
 
