@@ -11,7 +11,7 @@ type Props = {};
 export default function Navbar({}: Props) {
   const usePath = usePathname();
 
-  console.log("usePath", usePath);
+  console.log("usePath-", usePath);
 
   return (
     // flex 컨테이너 , max-witdh 1280px == 80rem == 7xl , w-full witdh 100% , 요소들에게 flex gap으로 요소들의 간격 설정
@@ -20,11 +20,21 @@ export default function Navbar({}: Props) {
       {/* 4xl - fontsize , line-height */}
       <div className="font-bold text-4xl">Tv Series</div>
 
-      <div className="flex gap-3">
-        <Link href={"/"}>Home</Link>
+      <div className="flex gap-3 text-xl">
+        <Link
+          className={`${usePath === "/" && "underline text-blue-400"}`}
+          href={"/"}
+        >
+          Home
+        </Link>
         {/* FavoritesPage와 Link 페이지연동 , Favorites 클릭시 http://localhost:3000/FavoritesPage이동 */}
         {/* error 404 - 단순 경로 에러 favorites폴더 경로입력*/}
-        <Link href={"/favorites"}>Favorites</Link>
+        <Link
+          className={`${usePath === "/favorites" && "underline text-blue-400"}`}
+          href={"/favorites"}
+        >
+          Favorites
+        </Link>
       </div>
     </div>
   );
