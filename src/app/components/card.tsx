@@ -24,7 +24,7 @@ type Props = {
   removeFromFavorites: (d: MovieType) => void;
 };
 export default function Card(props: Props) {
-  const [animationParent] = useAutoAnimate();
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
   const [favoritesMovies, setfavoritesMovies] = useAtom(favoriteMoviesAtom);
   const isFavorite = favoritesMovies.some((fav) => fav?.id === props.d.id);
 
@@ -40,6 +40,7 @@ export default function Card(props: Props) {
     <div className="relative">
       {/* 북마크바설정 */}
       <button
+        ref={parent}
         onClick={handleFavoritMovies}
         className="h-10 w-10 bg-black/60 absolute top-2 right-2 rounded-full flex items-center justify-center z-10 hover:opacity-85"
       >
@@ -47,11 +48,11 @@ export default function Card(props: Props) {
       </button>
       <Link href={`/${props.id}`} className="flex flex-col gap-1 relative">
         {/* 보여줄 Image박스 크기 설정 , 275 x 154 , gray , rounded */}
-        <div className="h-[154px] w-[275px] bg-gray-400 rounded-md overflow-hidden">
+        <div className="h-[154px] w-[275px] rounded-md overflow-hidden">
           <Image
             height={400}
             width={400}
-            className="w-full h-full"
+            className="hover:scale-95 transition-all  w-full h-full"
             src={props.movieImg}
             alt="movie-img"
           />
