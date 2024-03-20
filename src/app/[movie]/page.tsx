@@ -39,7 +39,7 @@ export default function Moviepage({
 
   return (
     <div>
-      <main className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 flex flex-col gap-4">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4">
         {/* Card눌렀을때 Home으로갈수있는 Back 버튼생성 Link , gap-4 flex컨테이너의 아이템 사이의 간격설정*/}
         <Navbar />
         <Link

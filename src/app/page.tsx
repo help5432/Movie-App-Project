@@ -74,7 +74,7 @@ export default function Home() {
         <Navbar />
         {/* flex flex-col flex컨테이너 자식요소들을 세로배치 */}
 
-        <div className="max-w-7xl px-2 mx-auto flex flex-col gap-8">
+        <div className="max-w-7xl items-center sm:items-start px-2 mx-auto flex flex-col gap-8">
           {/* onChange 입력 필드값이 변경될때 호출되는 이벤트 핸들러, 사용자가 검색어를 입력할때마다 setsearch 함수를 호출하여 search상태를 업데이트한다. */}
           {/* e 이벤트객체 e.target.value사용자가 입력한 텍스트를 가르킨다 */}
           <SearchBar
@@ -83,7 +83,7 @@ export default function Home() {
           />
           {/* {search} 테스트*/}
 
-          <section className="flex flex-wrap gap-4 justify-between">
+          <section className="justify-center flex flex-wrap gap-4 sm:justify-between">
             {/*flex- wrap 화면크기에따라 여러줄배치  */}
             {/* card , data ? data의 값이 null undifined 계속진행 반환 */}
             {data && moviesData
